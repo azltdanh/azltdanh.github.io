@@ -2,6 +2,7 @@ var cacheName = 'realtime-voting-v1';
 var filesToCache = [
     '/',
     '/index.html',
+    '/favicon.ico',
     '/assets/ratings/emo1.png',
     '/assets/ratings/emo2.png',
     '/assets/ratings/emo3.png',
