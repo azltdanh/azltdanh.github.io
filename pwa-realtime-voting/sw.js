@@ -9,7 +9,7 @@ var filesToCache = [
     subdir + '/assets/ratings/emo3.png',
     subdir + '/assets/ratings/emo4.png',
     subdir + '/assets/ratings/emo5.png',
-    subdir + '/styles.css',
+    subdir + '/site.css',
     subdir + '/cdn/reset.min.css',
     subdir + '/cdn/jquery-3.3.1.min.js',
     subdir + '/cdn/ably.min-1.js',
