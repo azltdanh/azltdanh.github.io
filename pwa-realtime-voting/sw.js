@@ -1,17 +1,19 @@
 var cacheName = 'realtime-voting-v1';
+var subdir = '/pwa-realtime-voting';
 var filesToCache = [
-    'index.html',
-    'favicon.ico',
-    'assets/ratings/emo1.png',
-    'assets/ratings/emo2.png',
-    'assets/ratings/emo3.png',
-    'assets/ratings/emo4.png',
-    'assets/ratings/emo5.png',
-    'styles.css',
-    'cdn/reset.min.css',
-    'cdn/jquery-3.3.1.min.js',
-    'cdn/ably.min-1.js',
-    'vote.js'
+    subdir + '/',
+    subdir + '/index.html',
+    subdir + '/favicon.ico',
+    subdir + '/assets/ratings/emo1.png',
+    subdir + '/assets/ratings/emo2.png',
+    subdir + '/assets/ratings/emo3.png',
+    subdir + '/assets/ratings/emo4.png',
+    subdir + '/assets/ratings/emo5.png',
+    subdir + '/styles.css',
+    subdir + '/cdn/reset.min.css',
+    subdir + '/cdn/jquery-3.3.1.min.js',
+    subdir + '/cdn/ably.min-1.js',
+    subdir + '/vote.js'
 ];
 
 // install
