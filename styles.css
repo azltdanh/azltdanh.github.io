@@ -1,0 +1,77 @@
+body::before {
+  display: none;
+}
+
+.typ-subhed {
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+html{
+  background: #463e40;
+}
+html, body{
+  width: 100%;
+  height: 100%;
+}
+.container {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.container {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.topic-rating {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.btn-rating {
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 5px 10px;
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
+  border: 1px solid #231f20;
+  color: #ffffff;
+  font-size: 50px;
+}
+
+.emo1 {
+  background-color: rgb(255, 126, 0);
+  background-image: url('assets/ratings/emo1.png');
+}
+
+.emo2 {
+  background-color: rgb(255, 180, 0);
+  background-image: url('assets/ratings/emo2.png');
+}
+
+.emo3 {
+  background-color: rgb(255, 234, 0);
+  background-image: url('assets/ratings/emo3.png');
+}
+
+.emo4 {
+  background-color: rgb(189, 217, 0);
+  background-image: url('assets/ratings/emo4.png');
+}
+
+.emo5 {
+  background-color: rgb(125, 204, 0);
+  background-image: url('assets/ratings/emo5.png');
+}

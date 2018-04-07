@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Realtime voting with Ably</title>
+    <link href='https://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
+    <script type="text/javascript" src="https://cdn.ably.io/lib/ably.min-1.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+    <style>
+        canvas {
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container" style="width: 75%;">
+        <canvas id="canvas"></canvas>
+    </div>
+    <script>
+
+        function debug() {
+            console.log(arguments);
+        }
+
+        // Utils
+
+        Storage.prototype.setObject = function (key, value) {
+            this.setItem(key, JSON.stringify(value));
+        }
+
+        Storage.prototype.getObject = function (key) {
+            var value = this.getItem(key);
+            return value && JSON.parse(value);
+        }
+
+        if (typeof Object.values !== 'function') {
+            Object.values = function (obj) {
+                var values = Object.keys(obj).filter(function (key) {
+                    if (obj.hasOwnProperty(key)) {
+                        return obj[key];
+                    }
+                });
+                console.log(values);
+                return values;
+            }
+        }
+
+        var results = sessionStorage.getObject('vote-results');
+
+        // default values
+        if (!results) {
+            results = {
+                "emo1": 0,
+                "emo2": 0,
+                "emo3": 0,
+                "emo4": 0,
+                "emo5": 0
+            }
+        }
+        debug('results', results);
+
+        var barChartData = {
+            labels: ['TOO BAD', 'UH-OH', 'OK', 'GOOD', 'LOVED IT'],
+            datasets: [{
+                label: 'voted ',
+                data: Object.values(results),
+                backgroundColor: [
+                    'rgba(255, 126, 0, 1)',
+                    'rgba(255, 180, 0, 1)',
+                    'rgba(255, 234, 0, 1)',
+                    'rgba(189, 217, 0, 1)',
+                    'rgba(125, 204, 0, 1)'
+                ],
+                borderColor: [
+                    'rgba(255, 126, 0, 1)',
+                    'rgba(255, 180, 0, 1)',
+                    'rgba(255, 234, 0, 1)',
+                    'rgba(189, 217, 0, 1)',
+                    'rgba(125, 204, 0, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+        debug('barChartData', barChartData);
+
+        window.onload = function () {
+            var ctx = document.getElementById('canvas').getContext('2d');
+            window.myBar = new Chart(ctx, {
+                type: 'bar',
+                data: barChartData,
+                options: {
+                    animation: false,
+                    responsive: true,
+                    legend: {
+                        display: false,
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Is this conference awesome?'
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        };
+
+        var ably = new Ably.Realtime('FhDa8w.9zcXgA:hzaRB6s_CWizWGue');
+        var channel = ably.channels.get('vote-channel');
+
+        // Subscribe to messages on channel
+        channel.subscribe('update', function (message) {
+
+            debug('message', message);
+            var data = message.data;
+
+            Object.keys(data).forEach(function (key) {
+                if (results.hasOwnProperty(key)) {
+                    results[key] = parseInt(results[key]) + parseInt(data[key]);
+                }
+            });
+
+            sessionStorage.setObject('vote-results', results);
+
+            barChartData.datasets[0].data = Object.values(results);
+
+            window.myBar.update();
+        });
+
+    </script>
+</body>
+
+</html>

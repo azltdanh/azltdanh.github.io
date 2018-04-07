@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Realtime voting demo</title>
+    <link rel="stylesheet" href="cdn/reset.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+    <section class="container">
+        <div class="topic-rating">
+            <button class="btn-rating emo1" data-key="emo1"></button>
+            <button class="btn-rating emo2" data-key="emo2"></button>
+            <button class="btn-rating emo3" data-key="emo3"></button>
+            <button class="btn-rating emo4" data-key="emo4"></button>
+            <button class="btn-rating emo5" data-key="emo5"></button>
+        </div>
+    </section>
+
+    <script type="text/javascript" src="cdn/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="cdn/ably.min-1.js"></script>
+    <script type="text/javascript" src="vote.js"></script>
+
+    <script type="text/javascript">
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/sw.js').then(function (registration) {
+                    // Registration was successful
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function (err) {
+                    // registration failed :(
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
+    
+</body>
+
+</html>
