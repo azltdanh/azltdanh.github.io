@@ -1,7 +1,7 @@
 
-# Realtime Voting app
+# Realtime Voting app - powered by Service Workers
 ​
-This is a client side application to be used for a realtime voting app built with Ably, Chart.js, Angular 4
+This is a client side application to be used for a realtime voting app built with Ably, Chart.js
 ​
 ヽ(๏∀๏ )ﾉ
 ​
