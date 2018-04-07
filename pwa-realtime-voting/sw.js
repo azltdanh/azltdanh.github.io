@@ -1,18 +1,18 @@
 var cacheName = 'realtime-voting-v1';
 var filesToCache = [
-    '/',
-    '/index.html',
-    '/favicon.ico',
-    '/assets/ratings/emo1.png',
-    '/assets/ratings/emo2.png',
-    '/assets/ratings/emo3.png',
-    '/assets/ratings/emo4.png',
-    '/assets/ratings/emo5.png',
-    '/styles.css',
-    '/cdn/reset.min.css',
-    '/cdn/jquery-3.3.1.min.js',
-    '/cdn/ably.min-1.js',
-    '/vote.js'
+    './',
+    './index.html',
+    './favicon.ico',
+    './assets/ratings/emo1.png',
+    './assets/ratings/emo2.png',
+    './assets/ratings/emo3.png',
+    './assets/ratings/emo4.png',
+    './assets/ratings/emo5.png',
+    './styles.css',
+    './cdn/reset.min.css',
+    './cdn/jquery-3.3.1.min.js',
+    './cdn/ably.min-1.js',
+    './vote.js'
 ];
 
 // install
