@@ -5,7 +5,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PWA Realtime Voting with Ably</title>
-    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- Add to Homescreen for Chrome on Android -->
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Add to home screen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="WeVote">
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+
+    <!-- Tile Icon for Windows -->
+    <meta name="msapplication-TileImage" content="assets/icons/icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#463e40">
+
+    <link rel="shortcut icon" href="assets/favicons/favicon-love.ico">
     <link rel="stylesheet" href="cdn/reset.min.css">
     <link rel="stylesheet" href="site.css">
 </head>
@@ -30,11 +44,9 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function () {
                 navigator.serviceWorker.register('sw.js').then(function (registration) {
-                    // Registration was successful
-                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    console.log('[ServiceWorker] registration successful with scope: ', registration.scope);
                 }, function (err) {
-                    // registration failed :(
-                    console.log('ServiceWorker registration failed: ', err);
+                    console.log('[ServiceWorker] registration failed: ', err);
                 });
             });
         }
