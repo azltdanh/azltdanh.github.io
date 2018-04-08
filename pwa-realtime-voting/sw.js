@@ -13,7 +13,7 @@ var filesToCache = [
     subdir + '/cdn/reset.min.css',
     subdir + '/cdn/jquery-3.3.1.min.js',
     subdir + '/cdn/ably.min-1.js',
-    subdir + '/vote.js'
+    subdir + '/js/vote.js'
 ];
 
 // install

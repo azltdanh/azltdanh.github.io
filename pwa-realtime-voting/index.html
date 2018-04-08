@@ -2,19 +2,18 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>PWA Realtime Voting</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PWA Realtime Voting with Ably</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="cdn/reset.min.css">
     <link rel="stylesheet" href="site.css">
-    <!-- <base href="/"> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
 
-    <section class="container">
-        <div class="topic-rating">
+    <section class="container bg-dark">
+        <div class="algin-vertical" id="btn-container">
             <button class="btn-rating emo1" data-key="emo1"></button>
             <button class="btn-rating emo2" data-key="emo2"></button>
             <button class="btn-rating emo3" data-key="emo3"></button>
@@ -25,7 +24,7 @@
 
     <script type="text/javascript" src="cdn/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="cdn/ably.min-1.js"></script>
-    <script type="text/javascript" src="vote.js"></script>
+    <script type="text/javascript" src="js/vote.js"></script>
 
     <script type="text/javascript">
         if ('serviceWorker' in navigator) {
@@ -40,7 +39,7 @@
             });
         }
     </script>
-    
+
 </body>
 
 </html>

@@ -3,56 +3,27 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Realtime voting with Ably</title>
-    <link href='https://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-    <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
-    <script type="text/javascript" src="https://cdn.ably.io/lib/ably.min-1.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
-    <style>
-        canvas {
-            user-select: none;
-            -moz-user-select: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-        }
-    </style>
+    <title>Realtime voting with Ably</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="cdn/reset.min.css">
+    <link rel="stylesheet" href="site.css">
 </head>
 
 <body>
-    <div id="container" style="width: 75%;">
-        <canvas id="canvas"></canvas>
-    </div>
-    <script>
 
-        function debug() {
-            console.log(arguments);
-        }
+    <section class="container">
+        <div class="algin-vertical">
+            <div class="chart-container">
+                <canvas id="canvas"></canvas>
+            </div>
+        </div>
+    </section>
 
-        // Utils
-
-        Storage.prototype.setObject = function (key, value) {
-            this.setItem(key, JSON.stringify(value));
-        }
-
-        Storage.prototype.getObject = function (key) {
-            var value = this.getItem(key);
-            return value && JSON.parse(value);
-        }
-
-        if (typeof Object.values !== 'function') {
-            Object.values = function (obj) {
-                var values = Object.keys(obj).filter(function (key) {
-                    if (obj.hasOwnProperty(key)) {
-                        return obj[key];
-                    }
-                });
-                console.log(values);
-                return values;
-            }
-        }
+    <script type="text/javascript" src="https://cdn.ably.io/lib/ably.min-1.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
+    <script type="text/javascript">
 
         var results = sessionStorage.getObject('vote-results');
 
@@ -69,9 +40,9 @@
         debug('results', results);
 
         var barChartData = {
-            labels: ['TOO BAD', 'UH-OH', 'OK', 'GOOD', 'LOVED IT'],
+            labels: ['TERRIBLE', 'BAD', 'OK', 'GOOD', 'AWESOME'],
             datasets: [{
-                label: 'voted ',
+                label: '# of Votes',
                 data: Object.values(results),
                 backgroundColor: [
                     'rgba(255, 126, 0, 1)',
@@ -92,21 +63,21 @@
         };
         debug('barChartData', barChartData);
 
-        window.onload = function () {
+        window.addEventListener('load', function () {
             var ctx = document.getElementById('canvas').getContext('2d');
             window.myBar = new Chart(ctx, {
                 type: 'bar',
                 data: barChartData,
                 options: {
-                    animation: false,
                     responsive: true,
                     legend: {
                         display: false,
-                        position: 'top',
                     },
                     title: {
                         display: true,
-                        text: 'Is this conference awesome?'
+                        fontSize: 32,
+                        lineHeight: 2,
+                        text: 'Is PWA awesome?'
                     },
                     scales: {
                         yAxes: [{
@@ -117,15 +88,15 @@
                     }
                 }
             });
-        };
+        });
 
         var ably = new Ably.Realtime('FhDa8w.9zcXgA:hzaRB6s_CWizWGue');
-        var channel = ably.channels.get('vote-channel');
+        var channel = ably.channels.get('persisted:vote-channel');
 
         // Subscribe to messages on channel
         channel.subscribe('update', function (message) {
 
-            debug('message', message);
+            debug('received message', message);
             var data = message.data;
 
             Object.keys(data).forEach(function (key) {
