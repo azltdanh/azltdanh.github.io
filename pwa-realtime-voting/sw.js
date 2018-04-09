@@ -50,11 +50,21 @@ self.addEventListener('fetch', function (e) {
     e.respondWith(
         caches.match(e.request).then(function (response) {
             return response || fetch(e.request).then(function (response) {
-                return caches.open(cacheName).then(function (cache) {
-                    console.log('[ServiceWorker] caching new fetch');
-                    cache.put(e.request, response.clone());
+                var shouldCache = response.ok;
+
+                if (e.request.method == 'POST') {
+                    shouldCache = false;
+                }
+
+                if (shouldCache) {
+                    return caches.open(cacheName).then(function (cache) {
+                        console.log('[ServiceWorker] caching new fetch');
+                        cache.put(e.request, response.clone());
+                        return response;
+                    });
+                } else {
                     return response;
-                });
+                }
             });
         })
     );
