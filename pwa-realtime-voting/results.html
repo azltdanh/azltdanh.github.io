@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="utf-8">
+    <title>Realtime Voting with Ably</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Realtime voting with Ably</title>
+
     <link rel="shortcut icon" href="assets/favicons/favicon-chart.ico">
     <link rel="stylesheet" href="cdn/reset.min.css">
     <link rel="stylesheet" href="site.css">
@@ -23,8 +24,10 @@
     <script type="text/javascript" src="https://cdn.ably.io/lib/ably.min-1.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
     <script type="text/javascript" src="js/utils.js"></script>
-    <script type="text/javascript">
 
+    <script>
+
+        // get value from session
         var results = sessionStorage.getObject('vote-results');
 
         // default values
@@ -37,7 +40,6 @@
                 "emo5": 0
             }
         }
-        debug('results', results);
 
         var barChartData = {
             labels: ['TERRIBLE', 'BAD', 'OK', 'GOOD', 'AWESOME'],
@@ -61,7 +63,6 @@
                 borderWidth: 1
             }]
         };
-        debug('barChartData', barChartData);
 
         window.addEventListener('load', function () {
             var ctx = document.getElementById('canvas').getContext('2d');
@@ -95,20 +96,14 @@
 
         // Subscribe to messages on channel
         channel.subscribe('update', function (message) {
-
-            debug('received message', message);
             var data = message.data;
-
             Object.keys(data).forEach(function (key) {
                 if (results.hasOwnProperty(key)) {
                     results[key] = parseInt(results[key]) + parseInt(data[key]);
                 }
             });
-
             sessionStorage.setObject('vote-results', results);
-
             barChartData.datasets[0].data = Object.values(results);
-
             window.myBar.update();
         });
 
