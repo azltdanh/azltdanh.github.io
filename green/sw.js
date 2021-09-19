@@ -1,4 +1,4 @@
-var cacheName = 'green-v1';
+var cacheName = 'green-v2';
 var subdir = '/green';
 var filesToCache = [
     subdir + '/',
