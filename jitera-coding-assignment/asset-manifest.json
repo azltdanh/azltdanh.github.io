@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/jitera-coding-assignment/static/css/main.8d126529.css",
+    "main.js": "/jitera-coding-assignment/static/js/main.e2419ace.js",
+    "static/js/787.b87ae985.chunk.js": "/jitera-coding-assignment/static/js/787.b87ae985.chunk.js",
+    "index.html": "/jitera-coding-assignment/index.html",
+    "main.8d126529.css.map": "/jitera-coding-assignment/static/css/main.8d126529.css.map",
+    "main.e2419ace.js.map": "/jitera-coding-assignment/static/js/main.e2419ace.js.map",
+    "787.b87ae985.chunk.js.map": "/jitera-coding-assignment/static/js/787.b87ae985.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8d126529.css",
+    "static/js/main.e2419ace.js"
+  ]
+}
