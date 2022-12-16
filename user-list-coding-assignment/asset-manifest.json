@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/jitera-coding-assignment/static/css/main.8d126529.css",
-    "main.js": "/jitera-coding-assignment/static/js/main.e2419ace.js",
-    "static/js/787.b87ae985.chunk.js": "/jitera-coding-assignment/static/js/787.b87ae985.chunk.js",
-    "index.html": "/jitera-coding-assignment/index.html",
-    "main.8d126529.css.map": "/jitera-coding-assignment/static/css/main.8d126529.css.map",
-    "main.e2419ace.js.map": "/jitera-coding-assignment/static/js/main.e2419ace.js.map",
-    "787.b87ae985.chunk.js.map": "/jitera-coding-assignment/static/js/787.b87ae985.chunk.js.map"
+    "main.css": "/user-list-coding-assignment/static/css/main.2032c0f2.css",
+    "main.js": "/user-list-coding-assignment/static/js/main.3b39acc4.js",
+    "static/js/787.66e3fe71.chunk.js": "/user-list-coding-assignment/static/js/787.66e3fe71.chunk.js",
+    "index.html": "/user-list-coding-assignment/index.html",
+    "main.2032c0f2.css.map": "/user-list-coding-assignment/static/css/main.2032c0f2.css.map",
+    "main.3b39acc4.js.map": "/user-list-coding-assignment/static/js/main.3b39acc4.js.map",
+    "787.66e3fe71.chunk.js.map": "/user-list-coding-assignment/static/js/787.66e3fe71.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8d126529.css",
-    "static/js/main.e2419ace.js"
+    "static/css/main.2032c0f2.css",
+    "static/js/main.3b39acc4.js"
   ]
 }
